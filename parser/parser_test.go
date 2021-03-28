@@ -1,9 +1,9 @@
 package parser
 
 import (
-	"testing"
 	"monkey-lang/ast"
 	"monkey-lang/lexer"
+	"testing"
 )
 
 func TestLetStatements(t *testing.T) {
@@ -21,7 +21,7 @@ let foobar = 838383;
 	}
 	if len(program.Statements) != 3 {
 		t.Fatalf("program.Statements does not contain 3 statements. got =%dl",
-		len(program.Statements))
+			len(program.Statements))
 	}
 
 	tests := []struct {
@@ -34,7 +34,7 @@ let foobar = 838383;
 
 	for i, tt := range tests {
 		stmt := program.Statements[i]
-		if !TestLetStatements(t, stmt, tt.expectedIdentifier) {
+		if !TestLetStatement(t, stmt, tt.expectedIdentifier) {
 			return
 		}
 	}
@@ -48,7 +48,7 @@ func TestLetStatement(t *testing.T, s ast.Statement, name string) bool {
 
 	letStmt, ok := s.(*ast.LetStatement)
 	if !ok {
-		t.Error("s not *ast.LetStatement. got =%T", s)
+		t.Errorf("s not *ast.LetStatement. got =%T", s)
 		return false
 	}
 	if letStmt.Name.Value != name {

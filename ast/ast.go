@@ -33,15 +33,14 @@ type Identifier struct {
 	Value string
 }
 
-func (i *Identifier) expressionNode() {}
-func (i *Identifier) TokenLiteral() {}
+func (i *Identifier) expressionNode()      {}
+func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
 
 type LetStatement struct {
 	Token token.Token // the token.LET token
-	Name *Identifier
+	Name  *Identifier
 	Value Expression
 }
 
-func (ls *LetStatement) statementNode() {}
-func (ls *LetStatement) TokenLiteral() string {return ls.Token.Literal}
-
+func (ls *LetStatement) statementNode()       {}
+func (ls *LetStatement) TokenLiteral() string { return ls.Token.Literal }
